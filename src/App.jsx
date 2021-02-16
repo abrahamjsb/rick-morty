@@ -11,9 +11,13 @@ import {
   SecondaryTitle,
 } from "./components/header/styled-components";
 import { Container } from "./components/body/styled-components";
+import { ThemeProvider } from "styled-components";
 
 // Api
 import { API_URL } from "./utils/constants";
+
+//utils
+import { theme } from "./utils/constants";
 
 const GET_CHARACTERS = `${API_URL}/characters`;
 
@@ -64,7 +68,7 @@ function App() {
     onGetCharacters();
   }, []);
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
       <Header>
         <MainTitle>Rick And Morty</MainTitle>
         <SecondaryTitle>
@@ -84,7 +88,7 @@ function App() {
           )}
         </Container>
       </MainBody>
-    </div>
+    </ThemeProvider>
   );
 }
 

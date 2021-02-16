@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { theme } from "../../utils/constants";
 import { SCREEN } from "../../utils/constants";
 
 export const MainBodyStyled = styled.section`
-  background-color: ${theme.darkBackground};
-  padding-top: ${theme.spacing};
+  background-color: ${(props) => props.theme.darkBackground};
+  padding-top: ${(props) => props.theme.spacing};
   min-height: 500px;
 `;
 

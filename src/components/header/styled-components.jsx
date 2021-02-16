@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "../../utils/constants";
 
 export const HeaderStyled = styled.header`
   min-height: 300px;
@@ -21,10 +20,10 @@ export const MainTitle = styled.h1`
 export const SecondaryTitle = styled.h2`
   text-transform: uppercase;
   font-weight: 500;
-  color: ${theme.orangeText};
+  color: ${(props) => props.theme.orangeText};
   margin: 0;
-  background-color: ${theme.darkBackground};
-  padding: 0 ${theme.spacing};
+  background-color: ${(props) => props.theme.darkBackground};
+  padding: 0 ${(props) => props.theme.spacing};
   -webkit-transform: skewX(-15deg);
   -moz-transform: skewX(-15deg);
   -ms-transform: skewX(-15deg);
