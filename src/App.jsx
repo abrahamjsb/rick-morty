@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
+
+// Main components
 import Header from "./components/header/Header";
 import MainBody from "./components/body/MainBody";
 import Card from "./components/card/Card";
+
+// styled components
+import {
+  MainTitle,
+  SecondaryTitle,
+} from "./components/header/styled-components";
 import { Container } from "./components/body/styled-components";
+
+// Api
 import { API_URL } from "./utils/constants";
 
 const GET_CHARACTERS = `${API_URL}/characters`;
@@ -56,7 +66,10 @@ function App() {
   return (
     <div className="App">
       <Header>
-        <h1>Rick And Morty</h1>
+        <MainTitle>Rick And Morty</MainTitle>
+        <SecondaryTitle>
+          Hey, did you ever want to hold a terry Fold?
+        </SecondaryTitle>
       </Header>
       <MainBody>
         <Container>
