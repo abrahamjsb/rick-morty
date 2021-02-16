@@ -31,7 +31,8 @@ function App() {
     setLoading(true);
     try {
       const randomIds = getRandomIds();
-      const result = await fetch(`${GET_CHARACTERS}/[${randomIds.toString()}]`);
+      const randomIdsString = randomIds.toString();
+      const result = await fetch(`${GET_CHARACTERS}/[${randomIdsString}]`);
       const response = await result.json();
       if (!result?.ok) {
         throw new Error(response?.error || "Something went wrong...");
