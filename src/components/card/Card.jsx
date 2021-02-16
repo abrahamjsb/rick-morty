@@ -9,7 +9,7 @@ export default function Card({ data }) {
   return (
     <CardStyled>
       <CardPhotoContainer>
-        <img src={data?.image} />
+        <img src={data?.image} alt={data?.name} />
         <figcaption>
           <h3>{data?.name}</h3>
         </figcaption>

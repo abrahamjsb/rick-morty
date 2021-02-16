@@ -18,6 +18,7 @@ import { API_URL } from "./utils/constants";
 
 //utils
 import { theme } from "./utils/constants";
+import { sortByLastEpisode, getRandomIds } from "./utils/utils";
 
 const GET_CHARACTERS = `${API_URL}/character`;
 
@@ -29,15 +30,13 @@ function App() {
   const onGetCharacters = async () => {
     setLoading(true);
     try {
-      const result = await fetch(GET_CHARACTERS);
+      const randomIds = getRandomIds();
+      const result = await fetch(`${GET_CHARACTERS}/[${randomIds.toString()}]`);
       const response = await result.json();
       if (!result?.ok) {
-        throw {
-          hasError: true,
-          message: response?.error || "Something went wrong",
-        };
+        throw new Error(response?.error || "Something went wrong...");
       }
-      const sortedCharacters = sortByLastEpisode(response.results);
+      const sortedCharacters = sortByLastEpisode(response);
       setCharacters(sortedCharacters);
       setLoading(false);
     } catch (error) {
@@ -50,31 +49,6 @@ function App() {
     }
   };
 
-  const getLastEpisode = (lastEpisodeUrl) => {
-    const lastEpisodeUrlSplitted = lastEpisodeUrl.split("/");
-    return parseInt(lastEpisodeUrlSplitted.pop());
-  };
-
-  const sortByLastEpisode = (characters) =>
-    characters.sort((character, nexCharacter) => {
-      const episodeUrlCurrentCharacter =
-        character.episode[character.episode.length - 1];
-      const episodeNumberCurrentCharacter = getLastEpisode(
-        episodeUrlCurrentCharacter
-      );
-      const episodeUrlNextCharacter =
-        nexCharacter.episode[nexCharacter.episode.length - 1];
-      const episodeNumberNextCharacter = getLastEpisode(
-        episodeUrlNextCharacter
-      );
-      if (episodeNumberCurrentCharacter > episodeNumberNextCharacter) {
-        return 1;
-      } else if (episodeNumberCurrentCharacter === episodeNumberNextCharacter) {
-        return 0;
-      } else {
-        return -1;
-      }
-    });
   useEffect(() => {
     onGetCharacters();
   }, []);
