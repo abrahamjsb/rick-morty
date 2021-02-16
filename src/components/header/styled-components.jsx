@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { SCREEN } from "../../utils/constants";
 
 export const HeaderStyled = styled.header`
   min-height: 300px;
@@ -15,6 +16,7 @@ export const MainTitle = styled.h1`
   font-size: 3em;
   margin: 0;
   line-height: 0.9;
+  text-align: center;
 `;
 
 export const SecondaryTitle = styled.h2`
@@ -29,4 +31,8 @@ export const SecondaryTitle = styled.h2`
   -ms-transform: skewX(-15deg);
   transform: skewX(-15deg);
   font-size: 1.05em;
+
+  @media (max-width: ${SCREEN.XS}) {
+    font-size: 0.9em;
+  }
 `;

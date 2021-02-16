@@ -19,9 +19,9 @@ export const Container = styled.div`
     width: 780px;
   }
   @media (max-width: ${SCREEN.XS}) {
-    width: 100%;
-    padding: 0 16px;
+    width: 100vw;
     flex-direction: column;
+    align-items: center;
   }
 `;
 
