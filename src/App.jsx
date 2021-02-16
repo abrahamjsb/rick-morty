@@ -3,6 +3,9 @@ import Header from "./components/header/Header";
 import MainBody from "./components/body/MainBody";
 import Card from "./components/card/Card";
 import { Container } from "./components/body/styled-components";
+import { API_URL } from "./utils/constants";
+
+const GET_CHARACTERS = `${API_URL}/characters`;
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -11,7 +14,7 @@ function App() {
   const onGetCharacters = async () => {
     setLoading(true);
     try {
-      const result = await fetch("https://rickandmortyapi.com/api/character");
+      const result = await fetch(GET_CHARACTERS);
       const response = await result.json();
       const sortedCharacters = sortByLastEpisode(response.results);
       setCharacters(sortedCharacters);
@@ -60,7 +63,7 @@ function App() {
           {!loading ? (
             <>
               {characters.map((character) => (
-                <Card data={character} />
+                <Card key={character?.id} data={character} />
               ))}
             </>
           ) : (

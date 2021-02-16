@@ -11,7 +11,7 @@ export default function Card({ data }) {
       <CardPhotoContainer>
         <img src={data?.image} />
         <figcaption>
-          <h4>{data?.name}</h4>
+          <h3>{data?.name}</h3>
         </figcaption>
       </CardPhotoContainer>
       <CardDescription>

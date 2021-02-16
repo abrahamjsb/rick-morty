@@ -12,7 +12,6 @@ export const Container = styled.div`
   width: 960px;
   margin: auto;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 
   @media (max-width: ${SCREEN.SMALL}) {

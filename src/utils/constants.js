@@ -15,3 +15,5 @@ export const SCREEN = {
   SMALL: "800px",
   XS: "600px",
 };
+
+export const API_URL = process.env.REACT_APP_API_URL;
