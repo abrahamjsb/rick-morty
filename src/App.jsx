@@ -10,7 +10,7 @@ import {
   MainTitle,
   SecondaryTitle,
 } from "./components/header/styled-components";
-import { Container } from "./components/body/styled-components";
+import { Container, ErrorMessage } from "./components/body/styled-components";
 import { ThemeProvider } from "styled-components";
 
 // Api
@@ -24,17 +24,28 @@ const GET_CHARACTERS = `${API_URL}/characters`;
 function App() {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({ hasError: false, message: "" });
 
   const onGetCharacters = async () => {
     setLoading(true);
     try {
       const result = await fetch(GET_CHARACTERS);
       const response = await result.json();
+      if (!result?.ok) {
+        throw {
+          hasError: true,
+          message: response?.error || "Something went wrong",
+        };
+      }
       const sortedCharacters = sortByLastEpisode(response.results);
       setCharacters(sortedCharacters);
       setLoading(false);
     } catch (error) {
       setLoading(false);
+      setError({
+        hasError: true,
+        message: error.message || "Something went wrong",
+      });
       console.log(error);
     }
   };
@@ -86,6 +97,7 @@ function App() {
           ) : (
             <span>Loading...</span>
           )}
+          {error?.hasError && <ErrorMessage>{error?.message}</ErrorMessage>}
         </Container>
       </MainBody>
     </ThemeProvider>
