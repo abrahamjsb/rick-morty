@@ -19,7 +19,7 @@ import { API_URL } from "./utils/constants";
 //utils
 import { theme } from "./utils/constants";
 
-const GET_CHARACTERS = `${API_URL}/characters`;
+const GET_CHARACTERS = `${API_URL}/character`;
 
 function App() {
   const [characters, setCharacters] = useState([]);
